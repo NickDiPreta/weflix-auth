@@ -21,7 +21,7 @@ export default function Login(props) {
         { withCredentials: true }
       )
       .then((response) => {
-        if (response.data.status === "created") {
+        if (response.data.logged_in === true) {
           props.handleSuccessfulAuth(response.data);
         }
         console.log('res from login', response)
@@ -31,8 +31,6 @@ export default function Login(props) {
       });
 
     event.preventDefault();
-
-    
     console.log("login form submitted.");
   };
 
