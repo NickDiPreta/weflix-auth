@@ -10,7 +10,7 @@ export default function Login(props) {
   const handleSubmit = (event) => {
     axios
       .post(
-        "http://localhost:3001/sessions",
+        "https://www.weflix.org/sessions",
         {
           user: {
             email: session.email,

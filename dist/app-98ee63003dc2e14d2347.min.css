@@ -1,0 +1,153 @@
+@import url(https://fonts.googleapis.com/css2?family=Martel+Sans:wght@200;300;400;600;700;800;900&display=swap);html {
+  background-color: #141414;
+  font-family: 'Martel Sans', sans-serif;
+  color: white;
+  width: 100vw;
+}
+
+#homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50vh;
+  margin: auto;
+  width: 80vw;
+  text-align: center;
+}
+
+nav {
+  padding-left: 15px;
+  padding-right: 10px;
+  background-color: #141414;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 54px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#logo {
+  height: 54px;
+}
+
+#avatar {
+  height: 1.5em;
+  background-color: #141414;
+  margin-right: 5px;
+}
+
+#burger {
+  height: 1.5em;
+  margin-right: 5px;
+}
+
+.nav-left {
+  width: 50vw;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  justify-content: space-evenly;
+}
+
+.nav-right {
+  display: flex;
+  flex-direction: row;
+}
+
+ul {
+  list-style: none;
+}
+
+.choose-profile {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  height: 20vh;
+  width: 30vw;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 30vh;
+}
+
+.profile-list {
+  display: flex;
+  margin-top: 10vh;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.movieContainer {
+  height: 60vh;
+  display: flex;
+  width: 100vw;
+  overflow: scroll;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.poster {
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
+  padding: 5px;
+  height: 75%;
+}
+
+.greenboy {
+  background-color: #b91d1d;
+  color: white;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 500px;
+  box-sizing: border-box;
+  letter-spacing: 2px;
+  outline-color: white;
+  padding-bottom: 21px;
+  padding-left: 56px;
+  padding-right: 56px;
+  padding-top: 19px;
+  text-align: center;
+  border: none;
+  font-weight: 700;
+}
+
+.single {
+  text-align: center;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+}
+
+.textboy {
+  margin-bottom: 5px;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 10px;
+  box-sizing: border-box;
+  letter-spacing: 2px;
+  outline-color: white;
+  padding-bottom: 21px;
+  padding-left: 56px;
+  padding-right: 56px;
+  padding-top: 19px;
+  text-align: center;
+  border: none;
+  font-weight: 700;
+}
+
+a :visited {
+  color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=app-61d6cc41702c2e29797b.map*/

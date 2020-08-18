@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Registration from "./auth/Registration";
 import Login from "./auth/Login";
 import axios from "axios";
+import Nav from "./shared/Nav"
 
 const Home = (props) => {
   const handleSuccessfulAuth = (data) => {
@@ -11,15 +12,17 @@ const Home = (props) => {
 
   const handleLogoutClick = () => {
     axios
-      .delete("http://localhost:3001/logout", { withCredentials: true })
+      .delete("https://www.weflix.org/logout", { withCredentials: true })
       .then(props.handleLogout())
       .catch((error) => {
         console.log("logout error", error);
       });
   };
 
+  props.currentUser.loggedInStatus === "LOGGED_IN" ? props.history.push("/dashboard"): ""
   return (
     <div>
+      
       <h1>Home</h1>
       <h1>Status: {props.loggedInStatus}</h1>
       <Registration handleSuccessfulAuth={handleSuccessfulAuth} />

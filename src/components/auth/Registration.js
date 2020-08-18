@@ -12,7 +12,7 @@ export default function Registration(props) {
   const handleSubmit = (event) => {
     axios
       .post(
-        "http://localhost:3001/registrations",
+        "https://www.weflix.org/registrations",
         {
           user: {
             email: registration.email,
