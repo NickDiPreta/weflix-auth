@@ -23,7 +23,7 @@ const Singlerec = (props) => {
       });
 
     event.preventDefault();
-    console.log("movie queried-");
+    
     let id = 0;
     await axios.get(url).then((response) => {
       console.log(response.data.results);
@@ -42,7 +42,7 @@ const Singlerec = (props) => {
     setName(event.target.value);
   };
 
-  const showRecs = recs.map((e) => <p>{e.original_title}</p>);
+  const showRecs = recs.map((e) => <p><Movie title={e.original_title} /></p>);
 
   const showMyMovies = props.myMovies.map((e) => <Movie title={e.title} />);
 
@@ -56,7 +56,7 @@ const Singlerec = (props) => {
         handleChange={handleChange}
       />
       Recommendations
-      {showRecs}
+      <ul className="movieContainer">{showRecs}</ul>
     </div>
   );
 };
