@@ -25,12 +25,12 @@ const Dashboard = (props) => {
         {/* <h1>Dashboard</h1>
         <h1>Status: {props.currentUser.loggedInStatus}</h1> */}
         <div className="choose-profile">
-          <h2>Who's watching?</h2>
+          <div className="watching"><h2>Who's watching?</h2></div>
           <ul className="profile-list">
             <Link to="/recommendation-form">
               <Hover className="dash-select">
                 {" "}
-                <img src="https://i.imgur.com/ICYksS4.png" />
+                <img id="user-icon" src="https://i.imgur.com/jJUn13t.png" />
                 <br />
                 Just Me{" "}
               </Hover>
@@ -38,7 +38,7 @@ const Dashboard = (props) => {
             <Link to="/group-recommendation" >
             <Hover className="dash-select">
               {" "}
-              <img src="https://i.imgur.com/DsGAB1V.png" />
+              <img id="group-icon" src="https://i.imgur.com/p7ZbYat.png" />
               <br />A Group
             </Hover>
             </Link>

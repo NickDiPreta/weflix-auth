@@ -15,6 +15,13 @@ const GroupRec = (props) => {
   const [gName, setgName] = useState('')
   const newLink = `https://fast-anchorage-26197.herokuapp.com/users/${props.id}`;
   const allU = `https://fast-anchorage-26197.herokuapp.com/users`;
+  const GrnBtn = styled.button`
+  :hover {
+    background-color: #ce3434;
+    transition-duration: 0.3s;
+    cursor: pointer;
+  }
+`;
 
   useEffect(() => {
     const getUsers = async () => {
@@ -82,7 +89,7 @@ setgName(keysSorted[0])
 
 
   return (
-    <div>
+    <div className="group-rec">
       Group Recommendations
       <br />
       <form onSubmit={(e) => submitU(e)}>
@@ -94,8 +101,8 @@ setgName(keysSorted[0])
       </form>
       {showGroup}
       {Object.values(display)[0]}
-      <button onClick={updateStorage}>Get Recommendation For Your Group!</button>
-      {gName !=''? <Movie title={gName}/> : "Poster Placeholder"}
+      <GrnBtn className="greenboy" onClick={updateStorage}>Get A Recommendation For Your Group!</GrnBtn>
+      {gName !=''? <Movie title={gName}/> : ""}
     </div>
   );
 };

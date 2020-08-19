@@ -47,15 +47,15 @@ const Singlerec = (props) => {
   const showMyMovies = props.myMovies.map((e) => <Movie title={e.title} />);
 
   return (
-    <div>
-      Movies That I like
+    <div className="single-rec">
+      <h2>My Movies</h2>
       <ul className="movieContainer">{showMyMovies}</ul>
       <Recommendation
         name={name}
         onSubmit={onSubmit}
         handleChange={handleChange}
       />
-      Recommendations
+      
       <ul className="movieContainer">{showRecs}</ul>
     </div>
   );

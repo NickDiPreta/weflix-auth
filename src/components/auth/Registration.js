@@ -56,6 +56,7 @@ export default function Registration(props) {
           }
           required
         ></input>
+        <br />
         <input
           type="password"
           name="password"
@@ -66,6 +67,7 @@ export default function Registration(props) {
           }
           required
         ></input>
+        <br />
         <input
           type="password"
           name="password_confirmation"
@@ -79,6 +81,7 @@ export default function Registration(props) {
           }
           required
         ></input>
+        <br />
         <button type="Submit">Register</button>
       </form>
     </div>

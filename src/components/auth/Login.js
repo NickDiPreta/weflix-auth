@@ -37,7 +37,7 @@ export default function Login(props) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input
+       <input
           type="email"
           name="email"
           placeholder="Email"
@@ -47,6 +47,7 @@ export default function Login(props) {
           }
           required
         ></input>
+        <br />
         <input
           type="password"
           name="password"
@@ -57,6 +58,7 @@ export default function Login(props) {
           }
           required
         ></input>
+        <br />
         <button type="Submit">Login</button>
       </form>
     </div>

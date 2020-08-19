@@ -67,7 +67,7 @@ const App = () => {
   
   return (
     <div className="app">
-      <Nav currentUser={currentUser}/>
+      <Nav logout={handleLogout} currentUser={currentUser}/>
       <BrowserRouter>
         <Switch>
           <Route

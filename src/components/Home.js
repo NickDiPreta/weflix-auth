@@ -21,13 +21,16 @@ const Home = (props) => {
 
   props.currentUser.loggedInStatus === "LOGGED_IN" ? props.history.push("/dashboard"): ""
   return (
-    <div>
+    <div className="homepage-mid">
       
-      <h1>Home</h1>
-      <h1>Status: {props.loggedInStatus}</h1>
-      <Registration handleSuccessfulAuth={handleSuccessfulAuth} />
+      <h1>Welcome</h1>
+      {/* <h1>Status: {props.loggedInStatus}</h1> */}
+      <h2>Log In</h2>
       <Login handleSuccessfulAuth={handleSuccessfulAuth} />
-      <button onClick={() => handleLogoutClick()}>Log Out</button>
+      <h2>Register</h2>
+      <Registration handleSuccessfulAuth={handleSuccessfulAuth} />
+ 
+      {/* <button onClick={() => handleLogoutClick()}>Log Out</button> */}
     </div>
   );
 };
