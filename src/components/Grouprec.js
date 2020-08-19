@@ -13,12 +13,12 @@ const GroupRec = (props) => {
   const [recs, setRecs] = useState([]);
   const [display, setDisplay] = useState({})
   const [gName, setgName] = useState('')
-  const newLink = `http://localhost:3002/users/${props.id}`;
-  const allU = `http://localhost:3002/users`;
+  const newLink = `https://fast-anchorage-26197.herokuapp.com/users/${props.id}`;
+  const allU = `https://fast-anchorage-26197.herokuapp.com/users`;
 
   useEffect(() => {
     const getUsers = async () => {
-      await axios.get("http://localhost:3002/users").then((response) => {
+      await axios.get("https://fast-anchorage-26197.herokuapp.com/users").then((response) => {
         setAllUsers(response.data);
         console.log("response is ", response);
       });
@@ -49,7 +49,7 @@ const GroupRec = (props) => {
   const getRec = (name) =>{
     const someObject = allUsers.find(item => item.name == name);
     console.log(someObject)
-    axios.get(`http://localhost:3002/users/${someObject.id}`).then((response)=>{
+    axios.get(`https://fast-anchorage-26197.herokuapp.com/users/${someObject.id}`).then((response)=>{
       const allRecs = [...recs]
       allRecs.push(response.data[0].ratings)
       setRecs(allRecs)
