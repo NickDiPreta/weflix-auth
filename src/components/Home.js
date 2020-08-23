@@ -18,9 +18,10 @@ const Home = (props) => {
       .catch((error) => {
         console.log("logout error", error);
       });
+      location.href = "https://stark-plateau-00385.herokuapp.com/"
   };
 
-  props.currentUser.loggedInStatus === "LOGGED_IN" ? props.history.push("/dashboard"): ""
+  
   return (
     <div className="homepage-mid">
       
