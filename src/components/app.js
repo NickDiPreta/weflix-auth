@@ -50,7 +50,7 @@ const App = () => {
             });
             console.log("Logged in? ", response);
           } else if (
-            response.data.logged_in &
+            !response.data.logged_in &&
             (currentUser.loggedInStatus === "NOT LOGGED IN")
           )
             setCurrentUser({ user: {}, loggedInStatus: "NOT_LOGGED_IN" });
