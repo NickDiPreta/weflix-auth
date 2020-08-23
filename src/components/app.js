@@ -36,9 +36,7 @@ const App = () => {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      await axios
-        .get("https://www.weflix.org/movies")
-        .then((response) => {setMyMovies(response.data.movies)})
+      
       await axios
         .get("https://www.weflix.org/logged_in", { withCredentials: true })
         .then((response) => {
@@ -62,8 +60,17 @@ const App = () => {
         });
     };
     checkLoginStatus();
+    handleMovies();
   }, []);
 
+  const handleMovies = async () =>{
+    await axios
+    .get("https://www.weflix.org/movies")
+    .then((response) => {
+      let mine = response.data.movies.filter(e=>e.user_id == currentUser.user.id)
+      console.log(currentUser)
+      setMyMovies(mine)})
+  }
   
   return (
     <div className="app">
