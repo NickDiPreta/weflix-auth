@@ -27,7 +27,7 @@ const Singlerec = (props) => {
   const onSubmit = async (event) => {
     axios
       .post("https://www.weflix.org/movies", {
-        user_id: props.currentUser.id,
+        user_id: props.id,
         title: name,
       })
       .then((response) => {
