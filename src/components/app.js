@@ -93,9 +93,8 @@ const App = () => {
           path={"/group-recommendation"}
           render={(props) => (
             <Grouprec
-              myMovies={myMovies}
               currentUser={currentUser}
-              id={currentUser}
+              id={id}
             />
           )}
         />

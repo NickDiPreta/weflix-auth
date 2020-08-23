@@ -13,6 +13,7 @@ const GroupRec = (props) => {
   const [recs, setRecs] = useState([]);
   const [display, setDisplay] = useState({})
   const [gName, setgName] = useState('')
+  const [films, setFilms] = useState([])
   const newLink = `https://fast-anchorage-26197.herokuapp.com/users/${props.id}`;
   const allU = `https://fast-anchorage-26197.herokuapp.com/users`;
   const GrnBtn = styled.button`
@@ -22,6 +23,17 @@ const GroupRec = (props) => {
     cursor: pointer;
   }
 `;
+
+
+useEffect(()=>{
+  const updateMovies = async()=>{
+    await axios.get("https://www.weflix.org/movies").then((response)=>{
+      setFilms(response.data.movies.filter((e)=>e.user_id == props.id))
+    })
+  }
+  updateMovies()
+},[props.id])
+
 
   useEffect(() => {
     const getUsers = async () => {
@@ -92,6 +104,7 @@ setgName(keysSorted[0])
     <div className="group-rec">
       Group Recommendations
       <br />
+      My Movies: {films.length>0? films[0].title: ""}
       <form onSubmit={(e) => submitU(e)}>
         <label for="user">Choose a user:</label>
         <select id="user" name="user" onChange={(e)=>setName(e.target.value)}>
