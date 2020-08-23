@@ -7,7 +7,6 @@ import Movie from "./Movie";
 
 const Singlerec = (props) => {
   const [name, setName] = useState("");
-  const [userMovies, setUserMovies] = useState([]);
   const [recs, setRecs] = useState([]);
 
   const url = `https://api.themoviedb.org/3/search/movie?api_key=0484cc139341c36f9dce3ac32f0bd803&language=en-US&query=${name}&page=1&include_adult=false`;
@@ -44,7 +43,9 @@ const Singlerec = (props) => {
 
   const showRecs = recs.map((e) => <p><Movie title={e.original_title} /></p>);
 
-  const showMyMovies = props.myMovies.map((e) => <Movie title={e.title} />);
+
+
+  const showMyMovies = props.userMovies.map((e) => <Movie title={e.title} />);
 
   return (
     <div className="single-rec">

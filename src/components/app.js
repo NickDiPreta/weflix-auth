@@ -2,41 +2,31 @@ import React, { useState, useEffect } from "react";
 import Home from "./Home";
 import Dashboard from "./Dashboard";
 import axios from "axios";
-import Nav from "./shared/Nav"
-import {
-  BrowserRouter,
-  Redirect,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
-import Singlerec from "./Singlerec"
-import Grouprec from "./Grouprec"
+import Nav from "./shared/Nav";
+import { BrowserRouter, Redirect, Switch, Route, Link } from "react-router-dom";
+import Singlerec from "./Singlerec";
+import Grouprec from "./Grouprec";
 
 const App = () => {
+  const [userMovies, setUserMovies] = useState([]);
   const [currentUser, setCurrentUser] = useState({
     loggedInStatus: "NOT LOGGED IN",
     user: {},
   });
-  const [myMovies, setMyMovies] = useState([])
 
   const handleLogin = (data) => {
     setCurrentUser({
       loggedInStatus: "LOGGED_IN",
       user: data.user,
     });
-   
   };
 
   const handleLogout = () => {
     setCurrentUser({ user: {}, loggedInStatus: "NOT LOGGED IN" });
   };
 
-  
-
   useEffect(() => {
     const checkLoginStatus = async () => {
-      
       await axios
         .get("https://www.weflix.org/logged_in", { withCredentials: true })
         .then((response) => {
@@ -50,7 +40,7 @@ const App = () => {
             });
             console.log("Logged in? ", response);
           } else if (
-            !response.data.logged_in &&
+            response.data.logged_in &
             (currentUser.loggedInStatus === "NOT LOGGED IN")
           )
             setCurrentUser({ user: {}, loggedInStatus: "NOT_LOGGED_IN" });
@@ -60,21 +50,29 @@ const App = () => {
         });
     };
     checkLoginStatus();
-    handleMovies();
   }, []);
 
-  const handleMovies = async () =>{
-    await axios
-    .get("https://www.weflix.org/movies")
-    .then((response) => {
-      let mine = response.data.movies.filter(e=>e.user_id == currentUser.user.id)
-      console.log(currentUser)
-      setMyMovies(mine)})
-  }
-  
+  useEffect(() => {
+    const handleMovies = async () => {
+      await axios.get("https://www.weflix.org/movies").then((response) => {
+        let mine = response.data.movies;
+        let holder = [...userMovies];
+        mine.map((e) => {
+          console.log(currentUser);
+          if (e.user_id == currentUser.id) {
+            holder.push(e);
+          }
+          console.log(holder);
+        });
+        setUserMovies(holder);
+      });
+    };
+    handleMovies();
+  }, [currentUser]);
+
   return (
     <div className="app">
-      <Nav logout={handleLogout} currentUser={currentUser}/>
+      <Nav logout={handleLogout} currentUser={currentUser} />
       <BrowserRouter>
         <Switch>
           <Route
@@ -102,14 +100,18 @@ const App = () => {
             exact
             path={"/recommendation-form"}
             render={(props) => (
-              <Singlerec myMovies={myMovies} currentUser={currentUser}/>
+              <Singlerec userMovies={userMovies} currentUser={currentUser} />
             )}
           />
           <Route
             exact
             path={"/group-recommendation"}
             render={(props) => (
-              <Grouprec myMovies={myMovies} currentUser={currentUser} id={currentUser}/>
+              <Grouprec
+                myMovies={myMovies}
+                currentUser={currentUser}
+                id={currentUser}
+              />
             )}
           />
         </Switch>
