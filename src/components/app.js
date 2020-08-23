@@ -32,6 +32,7 @@ const App = () => {
 
   const handleLogout = () => {
     setCurrentUser({ user: {}, loggedInStatus: "NOT LOGGED IN" });
+    location.href = "https://stark-plateau-00385.herokuapp.com/"
   };
 
   useEffect(() => {
