@@ -8,6 +8,9 @@ import Movie from "./Movie";
 const Singlerec = (props) => {
   const [name, setName] = useState("");
   const [recs, setRecs] = useState([]);
+  
+  
+ 
 
   const url = `https://api.themoviedb.org/3/search/movie?api_key=0484cc139341c36f9dce3ac32f0bd803&language=en-US&query=${name}&page=1&include_adult=false`;
 
@@ -22,7 +25,7 @@ const Singlerec = (props) => {
       });
 
     event.preventDefault();
-    
+
     let id = 0;
     await axios.get(url).then((response) => {
       console.log(response.data.results);
@@ -41,11 +44,20 @@ const Singlerec = (props) => {
     setName(event.target.value);
   };
 
-  const showRecs = recs.map((e) => <p><Movie title={e.original_title} /></p>);
-
-
+  const showRecs = recs.map((e) => (
+    <p>
+      <Movie title={e.original_title} />
+    </p>
+  ));
 
   const showMyMovies = props.userMovies.map((e) => <Movie title={e.title} />);
+
+  // useEffect(() => {
+  //   const loadMovies = () => {
+  //     window.location.reload();
+  //   };
+  //   loadMovies();
+  // }, []);
 
   return (
     <div className="single-rec">
@@ -56,7 +68,7 @@ const Singlerec = (props) => {
         onSubmit={onSubmit}
         handleChange={handleChange}
       />
-      
+
       <ul className="movieContainer">{showRecs}</ul>
     </div>
   );

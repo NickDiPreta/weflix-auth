@@ -28,7 +28,7 @@ const Nav = (props) => {
   return (
     <nav>
       <div className="nav-left">
-        <Link to="/">
+        <Link to="/dashboard">
           <img id="logo" src="https://i.imgur.com/00kPM8G.png" alt="logo" />
         </Link>
         <h3>{props.currentUser.email}</h3>

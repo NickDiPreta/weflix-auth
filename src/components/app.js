@@ -9,6 +9,7 @@ import Grouprec from "./Grouprec";
 
 const App = () => {
   const [userMovies, setUserMovies] = useState([]);
+  
   const [currentUser, setCurrentUser] = useState({
     loggedInStatus: "NOT LOGGED IN",
     user: {},
@@ -27,6 +28,7 @@ const App = () => {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
+      
       await axios
         .get("https://www.weflix.org/logged_in", { withCredentials: true })
         .then((response) => {
@@ -49,7 +51,9 @@ const App = () => {
           console.log("Check login error -", error);
         });
     };
+    
     checkLoginStatus();
+
   }, []);
 
   useEffect(() => {
@@ -68,6 +72,7 @@ const App = () => {
       });
     };
     handleMovies();
+    
   }, [currentUser]);
 
   return (
@@ -93,14 +98,14 @@ const App = () => {
             exact
             path={"/dashboard"}
             render={(props) => (
-              <Dashboard {...props} currentUser={currentUser} />
+              <Dashboard {...props} currentUser={currentUser} l/>
             )}
           />
           <Route
             exact
             path={"/recommendation-form"}
             render={(props) => (
-              <Singlerec userMovies={userMovies} currentUser={currentUser} />
+              <Singlerec userMovies={userMovies} currentUser={currentUser} loggedInStatus={currentUser.loggedInStatus}/>
             )}
           />
           <Route
