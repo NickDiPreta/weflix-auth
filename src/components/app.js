@@ -3,13 +3,20 @@ import Home from "./Home";
 import Dashboard from "./Dashboard";
 import axios from "axios";
 import Nav from "./shared/Nav";
-import { BrowserRouter, Redirect, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter,
+  Redirect,
+  Switch,
+  Route,
+  Link,
+  withRouter,
+} from "react-router-dom";
 import Singlerec from "./Singlerec";
 import Grouprec from "./Grouprec";
 
 const App = () => {
   const [userMovies, setUserMovies] = useState([]);
-  
+  const [id, setId] = useState(0);
   const [currentUser, setCurrentUser] = useState({
     loggedInStatus: "NOT LOGGED IN",
     user: {},
@@ -20,6 +27,7 @@ const App = () => {
       loggedInStatus: "LOGGED_IN",
       user: data.user,
     });
+    setId(data.user.id)
   };
 
   const handleLogout = () => {
@@ -28,7 +36,6 @@ const App = () => {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      
       await axios
         .get("https://www.weflix.org/logged_in", { withCredentials: true })
         .then((response) => {
@@ -40,6 +47,7 @@ const App = () => {
               ...response.data.user,
               loggedInStatus: "LOGGED_IN",
             });
+            setId(response.data.user.id);
             console.log("Logged in? ", response);
           } else if (
             response.data.logged_in &
@@ -51,76 +59,59 @@ const App = () => {
           console.log("Check login error -", error);
         });
     };
-    
+
     checkLoginStatus();
-
   }, []);
-
-  useEffect(() => {
-    const handleMovies = async () => {
-      await axios.get("https://www.weflix.org/movies").then((response) => {
-        let mine = response.data.movies;
-        let holder = [...userMovies];
-        mine.map((e) => {
-          console.log(currentUser);
-          if (e.user_id == currentUser.id) {
-            holder.push(e);
-          }
-          console.log(holder);
-        });
-        setUserMovies(holder);
-      });
-    };
-    handleMovies();
-    
-  }, [currentUser]);
 
   return (
     <div className="app">
       <Nav logout={handleLogout} currentUser={currentUser} />
-      <BrowserRouter>
-        <Switch>
-          <Route
-            exact
-            path={"/"}
-            render={(props) => (
-              <Home
-                {...props}
-                handleLogin={handleLogin}
-                handleLogout={handleLogout}
-                loggedInStatus={currentUser.loggedInStatus}
-                currentUser={currentUser}
-              />
-            )}
-          />
 
-          <Route
-            exact
-            path={"/dashboard"}
-            render={(props) => (
-              <Dashboard {...props} currentUser={currentUser} l/>
-            )}
-          />
-          <Route
-            exact
-            path={"/recommendation-form"}
-            render={(props) => (
-              <Singlerec userMovies={userMovies} currentUser={currentUser} loggedInStatus={currentUser.loggedInStatus}/>
-            )}
-          />
-          <Route
-            exact
-            path={"/group-recommendation"}
-            render={(props) => (
-              <Grouprec
-                myMovies={myMovies}
-                currentUser={currentUser}
-                id={currentUser}
-              />
-            )}
-          />
-        </Switch>
-      </BrowserRouter>
+      <Switch>
+        <Route
+          exact
+          path="/dashboard"
+          render={(props) => (
+            <Dashboard {...props} currentUser={currentUser} l />
+          )}
+        />
+        <Route
+          exact
+          path={"/recommendation-form"}
+          render={(props) => (
+            <Singlerec
+              id={id}
+              userMovies={userMovies}
+              currentUser={currentUser}
+              loggedInStatus={currentUser.loggedInStatus}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={"/group-recommendation"}
+          render={(props) => (
+            <Grouprec
+              myMovies={myMovies}
+              currentUser={currentUser}
+              id={currentUser}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <Home
+              {...props}
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              loggedInStatus={currentUser.loggedInStatus}
+              currentUser={currentUser}
+            />
+          )}
+        />
+      </Switch>
     </div>
   );
 };

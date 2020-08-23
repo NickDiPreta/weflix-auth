@@ -8,7 +8,17 @@ import Movie from "./Movie";
 const Singlerec = (props) => {
   const [name, setName] = useState("");
   const [recs, setRecs] = useState([]);
+  const [films, setFilms] = useState([])
   
+
+  useEffect(()=>{
+    const updateMovies = async()=>{
+      await axios.get("https://www.weflix.org/movies").then((response)=>{
+        setFilms(response.data.movies.filter((e)=>e.user_id == props.id))
+      })
+    }
+    updateMovies()
+  },[props.id])
   
  
 
@@ -50,7 +60,7 @@ const Singlerec = (props) => {
     </p>
   ));
 
-  const showMyMovies = props.userMovies.map((e) => <Movie title={e.title} />);
+  const showMyMovies = films.map((e) => <Movie title={e.title} />);
 
   // useEffect(() => {
   //   const loadMovies = () => {
