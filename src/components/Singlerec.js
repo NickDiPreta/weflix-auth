@@ -4,6 +4,7 @@ import Nav from "./shared/Nav";
 import { BrowserRouter, Redirect, Switch, Route, Link } from "react-router-dom";
 import Recommendation from "./shared/recommendation-form";
 import Movie from "./Movie";
+import SmallMovie from "./SmallMovie"
 
 const Singlerec = (props) => {
   const [name, setName] = useState("");
@@ -20,7 +21,7 @@ const Singlerec = (props) => {
     updateMovies()
   },[props.id])
   
- 
+console.log(films)
 
   const url = `https://api.themoviedb.org/3/search/movie?api_key=0484cc139341c36f9dce3ac32f0bd803&language=en-US&query=${name}&page=1&include_adult=false`;
 
@@ -60,7 +61,7 @@ const Singlerec = (props) => {
     </p>
   ));
 
-  const showMyMovies = films.map((e) => <Movie title={e.title} />);
+  const showMyMovies = films.map((e) => <div className="smaller"><SmallMovie title={e.title} /></div>);
 
   // useEffect(() => {
   //   const loadMovies = () => {
@@ -72,7 +73,7 @@ const Singlerec = (props) => {
   return (
     <div className="single-rec">
       <h2>My Movies</h2>
-      <ul className="movieContainer">{showMyMovies}</ul>
+      <ul className="smallMovieContainer">{showMyMovies}</ul>
       <Recommendation
         name={name}
         onSubmit={onSubmit}

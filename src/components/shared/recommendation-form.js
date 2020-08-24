@@ -5,6 +5,7 @@ import styled from "styled-components"
 
 const Recommendation = (props) => {
     const GrnBtn = styled.button`
+    margin-bottom:5px;
     :hover {
       background-color: #ce3434;
       transition-duration: 0.3s;

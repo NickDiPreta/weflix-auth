@@ -7,6 +7,7 @@ html{
   color:white;
   width:100vw;
 }
+
 #homepage {
     display: flex;
     flex-direction: column;
@@ -77,15 +78,20 @@ nav {
       justify-content: space-between;
   }
   .movieContainer {
-    height: 60vh;
+    
+    height: 50vh;
     display: flex;
-    width: 100vw;
-    overflow: scroll;
+    width: 90vw;
+    overflow-y: hidden;
     background: rgba(0, 0, 0, 0.5);
     align-items: center;
     justify-content: space-between;
+    margin: auto;
   }
 
+  ::-webkit-scrollbar{
+    // width: 20px;
+  }
   .poster{
     text-align: center;
     margin: auto;
@@ -119,7 +125,7 @@ nav {
   }
 
   .textboy {
-    margin-bottom: 5px ;
+    margin: 10px ;
     font-size: 16px;
     line-height: 1;
     border-radius: 10px;
@@ -180,3 +186,16 @@ nav {
   .group-rec{
     text-align: center;
   }
+
+  .smallMovieContainer{
+    height: 30vh;
+    display: flex;
+    width: 90vw;
+    overflow-y: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+  }
+
+ 
