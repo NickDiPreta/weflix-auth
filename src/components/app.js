@@ -14,6 +14,7 @@ import {
 import Singlerec from "./Singlerec";
 import Grouprec from "./Grouprec";
 import MovieDetails from "./MovieDetails";
+import About from "./About"
 
 const App = () => {
   const [userMovies, setUserMovies] = useState([]);
@@ -70,6 +71,7 @@ const App = () => {
       <Nav logout={handleLogout} currentUser={currentUser} />
 
       <Switch>
+        <Route exact path="/about" render={(props) => <About {...props} />} />
       <Route
           exact
           path="/movies/:title"

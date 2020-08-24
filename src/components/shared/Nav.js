@@ -35,7 +35,7 @@ const Nav = (props) => {
         <h3>{props.currentUser.email}</h3>
       </div>
       <div className="nav-right">
-        <img id="avatar" alt="avatar" src="https://i.imgur.com/wi5ci6B.png" />
+        <Link to="/about"><img id="avatar" alt="avatar" src="https://i.imgur.com/wi5ci6B.png" /></Link>
         <button onClick={() => handleLogoutClick()}>Logout</button>
 
       </div>

@@ -27,10 +27,12 @@ const Movie = (props) => {
       );
     });
   return (
+    <Link to={`/movies/${props.title}`}>
     <Hover className="poster">
       <img src={cover} alt="movie cover" />
       <p>{props.title}</p>
     </Hover>
+    </Link>
   );
 };
 

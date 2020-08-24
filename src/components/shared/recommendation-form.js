@@ -18,7 +18,7 @@ const Recommendation = (props) => {
       <input className="textboy"
         type="text"
         value={props.name}
-        placeholder="Movie name here"
+        placeholder="Add Movie"
         onChange={props.handleChange}
         id="name"
       />
