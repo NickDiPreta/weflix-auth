@@ -198,4 +198,18 @@ nav {
     margin: auto;
   }
 
+  #Movie-Description{
+    text-align: center;
+    width: 50vw;
+  }
+
+  .movie-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+    margin-top: 20vh;
+  }
+
  
